@@ -32,19 +32,24 @@ Product List
     </th>  
         <th>Product</th>        
         <th>Code</th>
+        <th>Availablity</th>
         <th>Price</th>
         <th>Rating</th>
     </tr>
 </thead>
 <tbody>  
 
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products|productFilter:listFilter">
 <td><img *ngIf="showImage" title="{{product.productName}}"
      [src]="product.imageUrl" height="50" width="50"></td>
-<td>{{product.productName}}</td>
-<td>{{product.productCode}}</td>
-<td>{{product.price}}</td>
-<td>{{product.starRating}}</td>
+<td>{{product.productName|uppercase}}</td>
+<td>{{product.productCode|lowercase}}</td>
+<td>{{product.releaseDate|date:'longDate'}}</td>
+<td>{{product.price|currency:'INR'}}</td>
+
+<td><app-star [rating]="product.starRating" 
+    (notify)="onRatingClicked($event)"></app-star></td>
+<!-- <td>{{234.456|number:'4.4-5'}}</td> -->
    </tr> 
 </tbody>
 
