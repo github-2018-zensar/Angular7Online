@@ -22,8 +22,14 @@ this.showImage = !this.showImage
 }
 
   ngOnInit() {
-   this.products= this._productService.getProducts();
-    console.log('init method called')
+  //  this.products= this._productService.getProducts();
+  //   console.log('init method called')
+
+  //subscribing to the observable
+
+ this._productService.getProducts()
+ .subscribe((products)=>this.products=products)
+
 
   }
 
