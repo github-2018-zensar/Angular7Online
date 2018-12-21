@@ -14,6 +14,8 @@ import { StarComponent } from './shared/star.component'
 import { ProductService } from './products/product.service';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { HomeComponent } from './home/home.component';
+import {ProductDetailGuard} from './products/product-detail.guard';
+import { CustomerComponent } from './customers/customer.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     ProductFilterPipe,
     StarComponent,
     ProductDetailComponent,
-    HomeComponent
+    HomeComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +35,9 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     RouterModule.forRoot([
       {path:'products',component:ProductListComponent},
-      {path:'product/:id',component:ProductDetailComponent},
+      {path:'product/:id',component:ProductDetailComponent,canActivate:[ProductDetailGuard]},
       {path:'welcome',component:HomeComponent},
+      {path:'customerForm',component:CustomerComponent},
       {path:'',redirectTo:'welcome',pathMatch:'full'},
       {path:'**',redirectTo:'welcome',pathMatch:'full'},
 

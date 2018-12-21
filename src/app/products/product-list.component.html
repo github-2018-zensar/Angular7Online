@@ -42,7 +42,7 @@ Product List
     <tr *ngFor="let product of products|productFilter:listFilter">
 <td><img *ngIf="showImage" title="{{product.productName}}"
      [src]="product.imageUrl" height="50" width="50"></td>
-<td>{{product.productName|uppercase}}</td>
+<td><a [routerLink]="['/product',product.productId]">{{product.productName|uppercase}}</a></td>
 <td>{{product.productCode|lowercase}}</td>
 <td>{{product.releaseDate|date:'longDate'}}</td>
 <td>{{product.price|currency:'INR'}}</td>
